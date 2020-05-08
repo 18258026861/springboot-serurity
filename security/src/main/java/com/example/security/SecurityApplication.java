@@ -1,13 +1,13 @@
-package com.example.springbootserurity;
+package com.example.security;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringbootSerurityApplication {
+public class SecurityApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootSerurityApplication.class, args);
+        SpringApplication.run(SecurityApplication.class, args);
     }
 
 }

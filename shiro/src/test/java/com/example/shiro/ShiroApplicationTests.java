@@ -1,10 +1,10 @@
-package com.example.springbootserurity;
+package com.example.shiro;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringbootSerurityApplicationTests {
+class ShiroApplicationTests {
 
     @Test
     void contextLoads() {

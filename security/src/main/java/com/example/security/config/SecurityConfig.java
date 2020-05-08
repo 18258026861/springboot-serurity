@@ -1,4 +1,4 @@
-package com.example.springbootserurity.config;
+package com.example.security.config;
 
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,10 +24,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/level2/**").hasRole("vip2")
                 .antMatchers("/level3/**").hasRole("vip3");
 //        没有权限显示拒绝访问很难看，所以跳转到登录页
-        http.formLogin();
+//              定制登录页 loginPage
+        http.formLogin().loginPage("/toLogin");
 
 //        关闭防止网站攻击工具
         http.csrf().disable();
+
+//        记住我  使用cookie  默认保存14天
+        http.rememberMe().rememberMeParameter("remember");
 
 //      注销,  成功返回首页
         http.logout().logoutSuccessUrl("/");

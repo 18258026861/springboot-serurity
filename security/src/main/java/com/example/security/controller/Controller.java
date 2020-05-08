@@ -1,4 +1,4 @@
-package com.example.springbootserurity.controller;
+package com.example.security.controller;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
