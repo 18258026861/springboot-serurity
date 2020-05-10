@@ -1,15 +1,83 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro">
 <head>
     <meta charset="UTF-8">
     <title>index</title>
 </head>
 <body>
 
+
 <h1>首页</h1>
 <p th:text="${msg}"></p>
+<a th:href="@{/tologin}">登录</a>
+<div >
+    <a shiro:hasPermission="user:add" th:href="@{/toadd}">add</a>
+</div>
+<div >
+    <a shiro:hasPermission="user:update" th:href="@{/toupdate}">update</a>
 
-<a th:href="@{/toadd}">add</a>   |
-<a th:href="@{/toupdate}">update</a>
+</div>
+
+
+
+<!-- 验证当前用户是否为“访客”，即未认证（包含未记住）的用户。 -->
+<p shiro:guest="">访客
+
+<!-- 认证通过或已记住的用户。 -->
+<p shiro:user="y">
+    认证通过活着已记住用户
+</p>
+
+<!-- 已认证通过的用户。不包含已记住的用户，这是与user标签的区别所在。 -->
+<p shiro:authenticated="user">
+    Hello, <span shiro:principal=""></span>, 已通过用户的信息
+</p>
+
+<!-- 输出当前用户信息，通常为登录帐号信息。 -->
+<p> 输出当前用户信息 <shiro:principal/></p>
+
+<!-- 未认证通过用户，与authenticated标签相对应。与guest标签的区别是，该标签包含已记住用户。 -->
+<p shiro:notAuthenticated="">
+    未认证通过用户
+</p>
+
+<!-- 验证当前用户是否属于该角色。 -->
+<a shiro:hasRole="YY" >你是否属于YY</a><!-- 拥有该角色 -->
+
+<!-- 与hasRole标签逻辑相反，当用户不属于该角色时验证通过。 -->
+<p shiro:lacksRole="developer"><!-- 没有该角色 -->
+    你不是YY
+</p>
+
+<!-- 验证当前用户是否属于以下所有角色。 -->
+<p shiro:hasAllRoles="developer, 2"><!-- 角色与判断 -->
+    You are a developer and a admin.
+</p>
+
+<!-- 验证当前用户是否属于以下任意一个角色。 -->
+<p shiro:hasAnyRoles="admin, vip, developer,1"><!-- 角色或判断 -->
+    You are a admin, vip, or developer.
+</p>
+
+<!--验证当前用户是否拥有指定权限。 -->
+<a shiro:hasPermission="user:update" >你拥有update权限</a><!-- 拥有权限 -->
+
+<!-- 与hasPermission标签逻辑相反，当前用户没有制定权限时，验证通过。 -->
+<p shiro:lacksPermission="user:add"><!-- 没有权限 -->
+    你没有add权限，但是看得到我
+</p>
+
+<!-- 验证当前用户是否拥有以下所有角色。 -->
+<p shiro:hasAllPermissions="user:add, user:update"><!-- 权限与判断 -->
+    你是update，add权限人员
+</p>
+
+<!-- 验证当前用户是否拥有以下任意一个权限。 -->
+<p shiro:hasAnyPermissions="user:add, user:update"><!-- 权限或判断 -->
+    你是update或add权限人员
+</p>
+
+
 </body>
 </html>
